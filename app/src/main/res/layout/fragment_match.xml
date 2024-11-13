@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".fragments.MatchFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/person_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="Persona recomendada"
+            android:scaleType="centerCrop"
+            android:src="@drawable/photoprofile" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bottom_fade_gradient" />
+
+        <LinearLayout
+            android:id="@+id/person_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@android:color/transparent"
+            android:gravity="start"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp">
+
+
+                <TextView
+                    android:id="@+id/person_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nami"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:textSize="34dp" />
+
+
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:id="@+id/person_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20 años"
+                    android:textStyle="normal"
+                    android:textColor="@android:color/white"
+                    android:textSize="20dp" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/person_career"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:text="Estudiante de ingenieria de software"
+                android:textStyle="normal"
+                android:textColor="@android:color/white"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/person_campus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:gravity="start"
+                android:text="UTP Lima Sur"
+                android:textStyle="normal"
+                android:textColor="@android:color/white"
+                android:textSize="20dp" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lectura"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/semi_transparent_black"
+                    app:chipCornerRadius="50dp"
+                    app:chipStrokeColor="@android:color/transparent"
+                    />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lectura"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/semi_transparent_black"
+                    app:chipCornerRadius="50dp"
+                    app:chipStrokeColor="@android:color/transparent"/>
+
+            </com.google.android.material.chip.ChipGroup>
+
+
+            <LinearLayout
+                android:id="@+id/song_playing_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:id="@+id/play_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Icono de reproducción" />
+
+
+                <TextView
+                    android:id="@+id/playing_song"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clavado en un bar - Maná"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/detail_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="8dp"
+                android:contentDescription="Icono de detalles"
+                android:src="@drawable/detail" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp">
+
+        <ImageButton
+            android:id="@+id/accept_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="60dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Aceptar"
+            android:src="@drawable/accept" />
+
+        <ImageButton
+            android:id="@+id/reject_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Denegar"
+            android:src="@drawable/reject" />
+    </LinearLayout>
+
+</LinearLayout>
