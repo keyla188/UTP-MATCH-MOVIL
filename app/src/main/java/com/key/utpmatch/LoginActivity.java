@@ -2,7 +2,9 @@ package com.key.utpmatch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,10 +27,15 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private Button loginButton;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+
 
         emailEditText = findViewById(R.id.email);
         passwordEditText = findViewById(R.id.password);
@@ -38,20 +45,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser() {
+        loginButton.setEnabled(false);
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
         // Validación simple de campos vacíos
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(LoginActivity.this, "Por favor ingrese todos los campos", Toast.LENGTH_SHORT).show();
+            loginButton.setEnabled(true);
             return;
         }
 
         // Crea el objeto de solicitud de inicio de sesión
         LoginRequest loginRequest = new LoginRequest(email, password);
 
+        // Obtén el token de SharedPreferences (si existe)
+        String token = PreferencesManager.getToken(LoginActivity.this);
+
         // Obtén la instancia de Retrofit desde ApiClient
-        Retrofit retrofit = ApiClient.getClient();
+        Retrofit retrofit = ApiClient.getClient(token);
 
         // Crea el servicio de autenticación
         Auth authService = retrofit.create(Auth.class);
@@ -60,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         authService.login(loginRequest).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+
                 if (response.isSuccessful() && response.body() != null) {
                     String token = response.body().getToken();
                     PreferencesManager.saveToken(LoginActivity.this, token);
@@ -73,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Error en las credenciales", Toast.LENGTH_SHORT).show();
+                    loginButton.setEnabled(true);
                 }
             }
 

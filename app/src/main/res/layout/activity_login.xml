@@ -25,7 +25,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginBottom="140dp"
-        android:backgroundTint="@color/primary"
+        android:backgroundTint="@color/button_color_state"
         android:text="Iniciar sesion"
         android:textColor="@color/white"
         android:textSize="20sp"

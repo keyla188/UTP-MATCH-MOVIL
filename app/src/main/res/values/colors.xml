@@ -4,4 +4,6 @@
     <color name="semi_transparent_black">#99000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#FF495F</color>
+    <color name="button_disabled">#FF99A5</color>
+    <color name="button_enabled">#FF495F</color>
 </resources>

@@ -14,6 +14,8 @@ public class UserRecomendation {
     private Campus campus;
     private Intention intention;
     private List<Interest> interests;
+    private List<Photo> photos;
+    private boolean is_active;
 
     public String getUser_id() {
         return user_id;
@@ -119,8 +121,7 @@ public class UserRecomendation {
         this.is_active = is_active;
     }
 
-    private List<Photo> photos;
-    private boolean is_active;
+
 
     // Getters y setters
 }
