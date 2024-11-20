@@ -149,12 +149,13 @@
 
             </LinearLayout>
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/detail_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="end|bottom"
                 android:layout_margin="8dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Icono de detalles"
                 android:src="@drawable/detail" />
         </LinearLayout>

@@ -1,33 +1,28 @@
 package com.key.utpmatch.fragments;
 
-import android.content.Context;
-import android.content.Loader;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.key.utpmatch.DetailRecommentationActivity;
 import com.key.utpmatch.R;
 import com.key.utpmatch.data.ApiClient;
-import com.key.utpmatch.data.auth.Auth;
 import com.key.utpmatch.data.match.Match;
 import com.key.utpmatch.models.match.Interest;
 import com.key.utpmatch.models.match.RecommendationResponse;
@@ -56,16 +51,18 @@ public class MatchFragment extends Fragment {
     private TextView personCampus;
     private TextView playingSong;
     private List<UserRecomendation> recommendations;
+    private UserRecomendation currentRecommendation;
     private int currentIndex = 0;
 
     private Match matchService;
     private MediaPlayer mediaPlayer;
-    private String songUrl = "https://cdnt-preview.dzcdn.net/api/1/1/4/e/8/0/4e86955ec47c15f985b3c164d24355ad.mp3?hdnea=exp=1731640517~acl=/api/1/1/4/e/8/0/4e86955ec47c15f985b3c164d24355ad.mp3*~data=user_id=0,application_id=42~hmac=2bd7056e3096cd1152398cc1badf046408c78880475831244b49046f5ff30a00";
+    private final String songUrl = "https://cdnt-preview.dzcdn.net/api/1/1/4/e/8/0/4e86955ec47c15f985b3c164d24355ad.mp3?hdnea=exp=1731640517~acl=/api/1/1/4/e/8/0/4e86955ec47c15f985b3c164d24355ad.mp3*~data=user_id=0,application_id=42~hmac=2bd7056e3096cd1152398cc1badf046408c78880475831244b49046f5ff30a00";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_match, container, false);
+
 
         chipGroupInterests = view.findViewById(R.id.chipGroupInterests);
         contentContainer = view.findViewById(R.id.content_container);
@@ -78,6 +75,20 @@ public class MatchFragment extends Fragment {
         personCareer = view.findViewById(R.id.person_career);
         personCampus = view.findViewById(R.id.person_campus);
         playingSong = view.findViewById(R.id.playing_song);
+
+        // LO DE BLOCK DE NOTAS
+        ImageButton detailIcon = view.findViewById(R.id.detail_icon);
+        detailIcon.setOnClickListener(v -> {
+            if (currentRecommendation != null) {
+                String userId = currentRecommendation.getUser_id();
+                Intent intent = new Intent(getContext(), DetailRecommentationActivity.class);
+                intent.putExtra("USER_ID", userId);
+                startActivity(intent);
+            } else {
+                Log.e("DetailIconClick", "currentRecommendation es nulo");
+                Toast.makeText(getContext(), "No hay recomendación actual", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         ImageButton nextButton = view.findViewById(R.id.accept_button);
 
@@ -144,7 +155,7 @@ public class MatchFragment extends Fragment {
         // Verifica si el fragmento está adjunto a la actividad y que el contexto no es null
         if (getActivity() != null && isAdded() && recommendations != null && index < recommendations.size()) {
             UserRecomendation recommendation = recommendations.get(index);
-
+            currentRecommendation = recommendation;
             if (recommendation.getPhotos() != null && !recommendation.getPhotos().isEmpty()) {
                 String firstPhotoUrl = recommendation.getPhotos().get(0).getFile_url();
 
@@ -181,16 +192,13 @@ public class MatchFragment extends Fragment {
 
     // Método para inicializar y reproducir la canción
     private void playSong(String songUrl) {
-        Toast.makeText(getContext(), "PLAY SONG", Toast.LENGTH_SHORT).show();
         mediaPlayer = new MediaPlayer();
         try {
             mediaPlayer.setDataSource(songUrl); // Configura la URL
             mediaPlayer.prepareAsync(); // Prepara la reproducción de manera asíncrona
-            Toast.makeText(getContext(), "TRY0"+songUrl, Toast.LENGTH_SHORT).show();
             mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
-                    Toast.makeText(getContext(), "ON PREPARED", Toast.LENGTH_SHORT).show();
                     mediaPlayer.start(); // Inicia la reproducción cuando esté listo
                 }
             });
@@ -232,4 +240,6 @@ public class MatchFragment extends Fragment {
             chipGroup.addView(chip);
         }
     }
+
+
 }
