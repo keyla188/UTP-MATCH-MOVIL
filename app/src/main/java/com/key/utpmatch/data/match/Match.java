@@ -1,6 +1,7 @@
 package com.key.utpmatch.data.match;
 
 import com.key.utpmatch.models.auth.UserProfileResponse;
+import com.key.utpmatch.models.match.MyMatchResponse;
 import com.key.utpmatch.models.match.RecommendationResponse;
 
 import retrofit2.Call;
@@ -13,4 +14,6 @@ public interface Match {
     // Ruta para obtener el perfil de recomendados
     @GET(BASE_PATH + "recommendations")
     Call<RecommendationResponse> getRecommendations(@Query("page") int page, @Query("limit") int limit);
+    @GET(BASE_PATH + "my-matchs")
+    Call<MyMatchResponse> getMyMatches(@Query("page") int page, @Query("limit") int limit);
 }

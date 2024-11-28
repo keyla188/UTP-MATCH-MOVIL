@@ -6,4 +6,5 @@
     <color name="primary">#FF495F</color>
     <color name="button_disabled">#FF99A5</color>
     <color name="button_enabled">#FF495F</color>
+    <color name="whatsapp">#25D366</color>
 </resources>

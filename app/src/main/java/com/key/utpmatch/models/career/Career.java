@@ -1,12 +1,13 @@
-package com.key.utpmatch.models.match;
+package com.key.utpmatch.models.career;
 
 public class Career {
     private int career_id;
     private String name;
     private boolean is_active;
+    private String createdAt;
+    private String updatedAt;
 
     // Getters y setters
-
     public int getCareer_id() {
         return career_id;
     }
@@ -29,5 +30,21 @@ public class Career {
 
     public void setIs_active(boolean is_active) {
         this.is_active = is_active;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

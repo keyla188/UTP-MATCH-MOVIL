@@ -1,4 +1,4 @@
-package com.key.utpmatch.models.match;
+package com.key.utpmatch.models.user;
 
 import com.key.utpmatch.models.campus.Campus;
 import com.key.utpmatch.models.career.Career;
@@ -8,7 +8,7 @@ import com.key.utpmatch.models.photo.Photo;
 
 import java.util.List;
 
-public class UserRecomendation {
+public class UserDetail {
     private String user_id;
     private String email;
     private String name;
@@ -21,8 +21,10 @@ public class UserRecomendation {
     private Intention intention;
     private List<Interest> interests;
     private List<Photo> photos;
-    private boolean is_active;
+    private String createdAt;
+    private String updatedAt;
 
+    // Getters y setters
     public String getUser_id() {
         return user_id;
     }
@@ -119,15 +121,19 @@ public class UserRecomendation {
         this.photos = photos;
     }
 
-    public boolean isIs_active() {
-        return is_active;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setIs_active(boolean is_active) {
-        this.is_active = is_active;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
 
-
-    // Getters y setters
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

@@ -24,7 +24,7 @@ import com.key.utpmatch.DetailRecommentationActivity;
 import com.key.utpmatch.R;
 import com.key.utpmatch.data.ApiClient;
 import com.key.utpmatch.data.match.Match;
-import com.key.utpmatch.models.match.Interest;
+import com.key.utpmatch.models.interest.Interest;
 import com.key.utpmatch.models.match.RecommendationResponse;
 import com.key.utpmatch.models.match.UserRecomendation;
 import com.key.utpmatch.utils.PreferencesManager;
@@ -56,7 +56,7 @@ public class MatchFragment extends Fragment {
 
     private Match matchService;
     private MediaPlayer mediaPlayer;
-    private final String songUrl = "https://cdnt-preview.dzcdn.net/api/1/1/4/e/8/0/4e86955ec47c15f985b3c164d24355ad.mp3?hdnea=exp=1731640517~acl=/api/1/1/4/e/8/0/4e86955ec47c15f985b3c164d24355ad.mp3*~data=user_id=0,application_id=42~hmac=2bd7056e3096cd1152398cc1badf046408c78880475831244b49046f5ff30a00";
+    private final String songUrl = "https://cdnt-preview.dzcdn.net/api/1/1/c/4/f/0/c4f2e311d3f1c6be5c4c73f4687a4c04.mp3?hdnea=exp=1732154369~acl=/api/1/1/c/4/f/0/c4f2e311d3f1c6be5c4c73f4687a4c04.mp3*~data=user_id=0,application_id=42~hmac=620b23041a17b9154efcfa8cc72e74c4262f6b650282d05b655c6ad789366e0c";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,7 +76,6 @@ public class MatchFragment extends Fragment {
         personCampus = view.findViewById(R.id.person_campus);
         playingSong = view.findViewById(R.id.playing_song);
 
-        // LO DE BLOCK DE NOTAS
         ImageButton detailIcon = view.findViewById(R.id.detail_icon);
         detailIcon.setOnClickListener(v -> {
             if (currentRecommendation != null) {
@@ -118,7 +117,7 @@ public class MatchFragment extends Fragment {
             Toast.makeText(getContext(), "Por favor, inicie sesión primero.", Toast.LENGTH_SHORT).show();
         }
 
-        playSong(songUrl);
+        //playSong(songUrl);
 
 
 
@@ -156,6 +155,7 @@ public class MatchFragment extends Fragment {
         if (getActivity() != null && isAdded() && recommendations != null && index < recommendations.size()) {
             UserRecomendation recommendation = recommendations.get(index);
             currentRecommendation = recommendation;
+            playSong(songUrl);
             if (recommendation.getPhotos() != null && !recommendation.getPhotos().isEmpty()) {
                 String firstPhotoUrl = recommendation.getPhotos().get(0).getFile_url();
 

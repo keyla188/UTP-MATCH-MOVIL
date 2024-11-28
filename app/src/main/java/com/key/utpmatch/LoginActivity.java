@@ -27,15 +27,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private Button loginButton;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-
-
 
         emailEditText = findViewById(R.id.email);
         passwordEditText = findViewById(R.id.password);
@@ -56,13 +51,13 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Crea el objeto de solicitud de inicio de sesión
+
         LoginRequest loginRequest = new LoginRequest(email, password);
 
-        // Obtén el token de SharedPreferences (si existe)
+
         String token = PreferencesManager.getToken(LoginActivity.this);
 
-        // Obtén la instancia de Retrofit desde ApiClient
+
         Retrofit retrofit = ApiClient.getClient(token);
 
         // Crea el servicio de autenticación
@@ -78,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                     PreferencesManager.saveToken(LoginActivity.this, token);
                     String tokeen = PreferencesManager.getToken(LoginActivity.this);
                     //saveToken(token);  // Guarda el token en SharedPreferences
-                    Toast.makeText(LoginActivity.this, "Inicio de sesión exitoso"+tokeen, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
 
                     // Redirige al usuario a la pantalla principal
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
