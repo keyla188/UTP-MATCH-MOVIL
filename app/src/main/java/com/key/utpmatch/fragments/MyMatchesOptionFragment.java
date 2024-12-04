@@ -64,7 +64,7 @@ public class MyMatchesOptionFragment extends Fragment {
         }
 
         matches = new ArrayList<>();
-        matchesAdapter = new MatchesAdapter(matches);
+        matchesAdapter = new MatchesAdapter(matches, true);
         recyclerView.setAdapter(matchesAdapter);
 
         return view;

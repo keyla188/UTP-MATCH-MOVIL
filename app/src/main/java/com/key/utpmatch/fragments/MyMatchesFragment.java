@@ -18,7 +18,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.key.utpmatch.R;
 import com.key.utpmatch.adapters.MatchesPagerAdapter;
-import com.key.utpmatch.databinding.FragmentMyMatchesBinding;
 
 public class MyMatchesFragment extends Fragment {
 

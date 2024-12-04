@@ -5,13 +5,30 @@
     android:layout_height="match_parent"
     tools:context=".fragments.MyPendingsOptionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMatches"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="No tienes matches pendientes"
-        android:gravity="center"
-        android:textColor="@color/primary"
-        android:padding="10dp"/>
+        android:scrollbars="vertical" />
+
+    <!-- Loader -->
+    <FrameLayout
+        android:id="@+id/loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ProgressBar
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:max="100"
+            android:progressTint="@color/primary"
+            android:indeterminateTint="@color/primary"
+            android:scrollbarStyle="insideInset"
+            android:visibility="visible" />
+    </FrameLayout>
 
 </FrameLayout>

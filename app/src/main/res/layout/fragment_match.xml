@@ -173,7 +173,7 @@
         android:visibility="gone">
 
         <ImageButton
-            android:id="@+id/accept_button"
+            android:id="@+id/request_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="60dp"

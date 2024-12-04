@@ -32,6 +32,7 @@ import com.key.utpmatch.utils.PreferencesManager;
 import java.io.IOException;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -89,9 +90,18 @@ public class MatchFragment extends Fragment {
             }
         });
 
-        ImageButton nextButton = view.findViewById(R.id.accept_button);
+        ImageButton nextButton = view.findViewById(R.id.reject_button);
 
         nextButton.setOnClickListener(v -> showNextRecommendation());
+
+        ImageButton requestButton = view.findViewById(R.id.request_button);
+        requestButton.setOnClickListener(v -> {
+            if (currentRecommendation != null) {
+                createRequest(currentRecommendation.getUser_id());
+            } else {
+                Toast.makeText(getContext(), "No hay recomendación actual para solicitar.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         ImageView playIcon = view.findViewById(R.id.play_icon);
 
@@ -178,6 +188,27 @@ public class MatchFragment extends Fragment {
         } else {
             Log.e("MatchFragment", "Fragmento no está adjunto o contexto es nulo.");
         }
+    }
+
+    private void createRequest(String id){
+        matchService.createRequest(id).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getContext(), "Solicitud enviada con éxito.", Toast.LENGTH_SHORT).show();
+                    showNextRecommendation();
+                } else {
+                    Log.e("createRequest", "Error en la solicitud: " + response.errorBody());
+                    Toast.makeText(getContext(), "Error al enviar la solicitud.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("createRequest", "Error en la conexión: " + t.getMessage());
+                Toast.makeText(getContext(), "Fallo al enviar la solicitud.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

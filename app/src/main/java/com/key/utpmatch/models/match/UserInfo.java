@@ -1,5 +1,11 @@
 package com.key.utpmatch.models.match;
 
+import com.key.utpmatch.models.campus.Campus;
+import com.key.utpmatch.models.career.Career;
+import com.key.utpmatch.models.photo.Photo;
+
+import java.util.List;
+
 public class UserInfo {  // Cambié 'class UserInfo' a 'public class UserInfo'
     private String user_id;
     private String name;
@@ -7,6 +13,9 @@ public class UserInfo {  // Cambié 'class UserInfo' a 'public class UserInfo'
     private String description;
     private String birthdate;
     private String contact_phone;
+    private Career career;
+    private Campus campus;
+    private List<Photo> photos;
     private String createdAt;
     private String updatedAt;
 
@@ -69,6 +78,31 @@ public class UserInfo {  // Cambié 'class UserInfo' a 'public class UserInfo'
     public void setContact_phone(String contact_phone) {
         this.contact_phone = contact_phone;
     }
+
+    public Career getCareer() {
+        return career;
+    }
+
+    public void setCareer(Career career) {
+        this.career = career;
+    }
+
+    public Campus getCampus() {
+        return campus;
+    }
+
+    public void setCampus(Campus campus) {
+        this.campus = campus;
+    }
+
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
+    }
+
 
     public String getCreatedAt() {
         return createdAt;

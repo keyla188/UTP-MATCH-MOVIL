@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/content_container"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_weight="1"
+        android:visibility="visible"
+        >
+
+
+        <ImageView
+            android:id="@+id/imageViewProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="Persona recomendada"
+            android:scaleType="centerCrop"
+            android:src="@drawable/photoprofile" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bottom_fade_gradient" />
+
+        <LinearLayout
+            android:id="@+id/person_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@android:color/transparent"
+            android:gravity="start"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+
+                <TextView
+                    android:id="@+id/textViewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nami"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:textSize="34dp" />
+
+
+
+            <TextView
+                android:id="@+id/textViewMatches"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:gravity="start"
+                android:text="10 match"
+                android:textStyle="normal"
+                android:textColor="@android:color/white"
+                android:textSize="20dp" />
+
+
+            <ImageButton
+                android:id="@+id/detail_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="8dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Icono de detalles"
+                android:src="@drawable/detail" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>
